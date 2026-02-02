@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Layer Animated Scene</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Scene Container -->
+    <div id="scene-container">
+        
+        <!-- Layer 1: Background - Road/Expressway -->
+        <div id="background-layer" class="layer">
+            <div class="road">
+                <div class="lane-marking"></div>
+                <div class="boundary-lane-marking"></div>
+                <div class="boundary-lane-marking"></div>
+                <div class="lane-marking"></div>
+                <!-- Road text markings - one for each lane -->
+                <div class="road-text road-text-1">JAIPUR TO DELHI</div>
+                <div class="road-text road-text-2">JAIPUR TO DELHI</div>
+            </div>
+        </div>
+
+        <!-- Layer 2: Clouds (Optional extra layer for depth) -->
+        <div id="clouds-layer" class="layer">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+        </div>
+
+        <!-- Layer 3: Street Lights (Optional extra layer) -->
+        <!-- <div id="streetlights-layer" class="layer">
+            <div class="streetlight" style="left: 15%;"></div>
+            <div class="streetlight" style="left: 50%;"></div>
+            <div class="streetlight" style="left: 85%;"></div>
+        </div> -->
+
+        <!-- Layer 3.5: Road Signs -->
+        <div id="road-signs-layer" class="layer">
+            <!-- Express Way Sign -->
+            <!-- <div class="expressway-sign">
+                <div class="sign-board">EXPRESS WAY</div>
+            </div> -->
+            
+            <!-- Speed Limit Signs -->
+            <!-- <div class="speed-sign" style="left: 10%; bottom: 45%;">
+                <div class="sign-pole"></div>
+                <div class="sign-board-circle">
+                    <div class="speed-number">120</div>
+                    <div class="speed-label">KM/H</div>
+                </div>
+            </div> -->
+            
+            <!-- <div class="speed-sign" style="left: 75%; bottom: 48%;">
+                <div class="sign-pole"></div>
+                <div class="sign-board-circle">
+                    <div class="speed-number">120</div>
+                    <div class="speed-label">KM/H</div>
+                </div>
+            </div> -->
+            
+            <!-- Additional road sign -->
+            <!-- <div class="caution-sign" style="left: 40%; bottom: 50%;">
+                <div class="sign-pole"></div>
+                <div class="sign-board-triangle">
+                    <div class="caution-icon">⚠️</div>
+                </div>
+            </div> -->
+        </div>
+
+        <!-- Layer 4: Vehicles -->
+        <div id="vehicles-layer" class="layer">
+            <!-- Cars will be dynamically added by JavaScript -->
+        </div>
+
+        <!-- Layer 5: Rain Effect -->
+        <!-- <canvas id="rain-canvas" class="layer"></canvas> -->
+
+        <!-- Layer 6: Fog Effect (Optional extra layer) -->
+        <!-- <div id="fog-layer" class="layer">
+            <div class="fog fog-1"></div>
+            <div class="fog fog-2"></div>
+        </div> -->
+
+        <!-- Controls Panel -->
+        <!-- <div id="controls">
+            <h3>Scene Controls</h3>
+            <label>
+                <input type="checkbox" id="toggle-rain" checked> Rain
+            </label>
+            <label>
+                <input type="checkbox" id="toggle-cars" checked> Cars
+            </label>
+            <label>
+                <input type="checkbox" id="toggle-fog" checked> Fog
+            </label>
+        </div> -->
+    </div>
+
+    <!-- Load JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

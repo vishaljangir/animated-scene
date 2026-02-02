@@ -99,6 +99,20 @@ body {
     100% { transform: translateX(-60px); }
 }
 
+/* Road curve/turn effect */
+.road-curve {
+    position: absolute;
+    left: 30%;
+    width: 40%;
+    height: 100%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0.3) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
 /* Road text markings - fixed on each lane */
 .road-text {
     position: absolute;
@@ -440,6 +454,7 @@ body {
     bottom: 0;
     transition: none;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    transform-origin: center center;
 }
 
 /* Direction specific styles */

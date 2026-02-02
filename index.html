@@ -3,102 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Layer Animated Scene</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Split Road Animation - Cars in Opposite Directions</title>
+    <link rel="stylesheet" href="split-road.css">
 </head>
 <body>
     <!-- Main Scene Container -->
     <div id="scene-container">
         
-        <!-- Layer 1: Background - Road/Expressway -->
+        <!-- Background Layer -->
         <div id="background-layer" class="layer">
-            <div class="road">
-                <div class="lane-marking"></div>
-                <div class="boundary-lane-marking"></div>
-                <div class="boundary-lane-marking"></div>
-                <div class="lane-marking"></div>
-                <!-- Road text markings - one for each lane -->
-                <div class="road-text road-text-1">JAIPUR TO DELHI</div>
-                <div class="road-text road-text-2">JAIPUR TO DELHI</div>
-            </div>
+            <div class="sky"></div>
+            <div class="ground"></div>
         </div>
 
-        <!-- Layer 2: Clouds (Optional extra layer for depth) -->
-        <div id="clouds-layer" class="layer">
-            <div class="cloud cloud-1"></div>
-            <div class="cloud cloud-2"></div>
-        </div>
-
-        <!-- Layer 3: Street Lights (Optional extra layer) -->
-        <!-- <div id="streetlights-layer" class="layer">
-            <div class="streetlight" style="left: 15%;"></div>
-            <div class="streetlight" style="left: 50%;"></div>
-            <div class="streetlight" style="left: 85%;"></div>
-        </div> -->
-
-        <!-- Layer 3.5: Road Signs -->
-        <div id="road-signs-layer" class="layer">
-            <!-- Express Way Sign -->
-            <!-- <div class="expressway-sign">
-                <div class="sign-board">EXPRESS WAY</div>
-            </div> -->
+        <!-- Road Layer with Smooth Curved Split (SVG) -->
+        <svg id="road-layer" class="layer" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <linearGradient id="roadGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#2a2a2a;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+                </linearGradient>
+            </defs>
             
-            <!-- Speed Limit Signs -->
-            <!-- <div class="speed-sign" style="left: 10%; bottom: 45%;">
-                <div class="sign-pole"></div>
-                <div class="sign-board-circle">
-                    <div class="speed-number">120</div>
-                    <div class="speed-label">KM/H</div>
-                </div>
-            </div> -->
+            <!-- Main Road (enters from left) -->
+            <path id="main-road-path" 
+                  d="M -100,540 L 750,540" 
+                  stroke="url(#roadGradient)" 
+                  stroke-width="140" 
+                  fill="none"
+                  stroke-linecap="butt"/>
             
-            <!-- <div class="speed-sign" style="left: 75%; bottom: 48%;">
-                <div class="sign-pole"></div>
-                <div class="sign-board-circle">
-                    <div class="speed-number">120</div>
-                    <div class="speed-label">KM/H</div>
-                </div>
-            </div> -->
+            <!-- Road borders -->
+            <path d="M -100,470 L 750,470" stroke="#444" stroke-width="2" fill="none"/>
+            <path d="M -100,610 L 750,610" stroke="#444" stroke-width="2" fill="none"/>
             
-            <!-- Additional road sign -->
-            <!-- <div class="caution-sign" style="left: 40%; bottom: 50%;">
-                <div class="sign-pole"></div>
-                <div class="sign-board-triangle">
-                    <div class="caution-icon">⚠️</div>
-                </div>
-            </div> -->
+            <!-- Upper Curved Road (LEFT → RIGHT) -->
+            <path id="upper-road-path" 
+                  d="M 750,540 Q 950,540 1150,380 L 2020,380" 
+                  stroke="url(#roadGradient)" 
+                  stroke-width="110" 
+                  fill="none"
+                  stroke-linecap="butt"/>
+            
+            <path d="M 750,485 Q 950,485 1150,325 L 2020,325" stroke="#444" stroke-width="2" fill="none"/>
+            <path d="M 750,595 Q 950,595 1150,435 L 2020,435" stroke="#444" stroke-width="2" fill="none"/>
+            
+            <!-- Lower Curved Road (RIGHT → LEFT) -->
+            <path id="lower-road-path" 
+                  d="M 750,540 Q 950,540 1150,700 L 2020,700" 
+                  stroke="url(#roadGradient)" 
+                  stroke-width="110" 
+                  fill="none"
+                  stroke-linecap="butt"/>
+            
+            <path d="M 750,485 Q 950,485 1150,645 L 2020,645" stroke="#444" stroke-width="2" fill="none"/>
+            <path d="M 750,595 Q 950,595 1150,755 L 2020,755" stroke="#444" stroke-width="2" fill="none"/>
+            
+            <!-- Yellow Center Lines -->
+            <path d="M -100,540 L 750,540" 
+                  stroke="#ffcc00" 
+                  stroke-width="3" 
+                  stroke-dasharray="40,30" 
+                  fill="none"
+                  class="animated-dash-left"/>
+            
+            <path d="M 750,540 Q 950,540 1150,380 L 2020,380" 
+                  stroke="#ffcc00" 
+                  stroke-width="3" 
+                  stroke-dasharray="40,30" 
+                  fill="none"
+                  class="animated-dash-right"/>
+            
+            <path d="M 750,540 Q 950,540 1150,700 L 2020,700" 
+                  stroke="#ffcc00" 
+                  stroke-width="3" 
+                  stroke-dasharray="40,30" 
+                  fill="none"
+                  class="animated-dash-right"/>
+        </svg>
+
+        <!-- Cars Layer -->
+        <div id="cars-layer" class="layer">
+            <!-- Cars will be dynamically added here -->
         </div>
 
-        <!-- Layer 4: Vehicles -->
-        <div id="vehicles-layer" class="layer">
-            <!-- Cars will be dynamically added by JavaScript -->
-        </div>
+        <!-- Weather Layer -->
+        <canvas id="weather-canvas" class="layer"></canvas>
 
-        <!-- Layer 5: Rain Effect -->
-        <!-- <canvas id="rain-canvas" class="layer"></canvas> -->
-
-        <!-- Layer 6: Fog Effect (Optional extra layer) -->
-        <!-- <div id="fog-layer" class="layer">
-            <div class="fog fog-1"></div>
-            <div class="fog fog-2"></div>
-        </div> -->
-
-        <!-- Controls Panel -->
-        <!-- <div id="controls">
-            <h3>Scene Controls</h3>
-            <label>
-                <input type="checkbox" id="toggle-rain" checked> Rain
-            </label>
+        <!-- Control Panel -->
+        <div id="controls">
+            <h3>🚗 Split Road Controls</h3>
             <label>
                 <input type="checkbox" id="toggle-cars" checked> Cars
             </label>
             <label>
-                <input type="checkbox" id="toggle-fog" checked> Fog
+                <input type="checkbox" id="toggle-weather"> Rain
             </label>
-        </div> -->
+            <label>
+                Car Count: <span id="car-count-display">6</span>
+                <input type="range" id="car-count" min="2" max="12" value="6">
+            </label>
+        </div>
+
+        <!-- Info Panel -->
+        <div id="info-panel">
+            <p><span style="color: #4CAF50;">→</span> Upper: Left to Right</p>
+            <p><span style="color: #2196F3;">←</span> Lower: Right to Left</p>
+        </div>
     </div>
 
-    <!-- Load JavaScript -->
-    <script src="script.js"></script>
+    <script src="split-road.js"></script>
 </body>
 </html>

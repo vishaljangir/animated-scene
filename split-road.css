@@ -1,0 +1,222 @@
+/* ===========================
+   SPLIT ROAD ANIMATION - CSS
+   Complete Road Fork Animation
+   =========================== */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    background: #1a1a2e;
+}
+
+/* Scene Container */
+#scene-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Layer Base */
+.layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* ===========================
+   BACKGROUND LAYER
+   =========================== */
+#background-layer {
+    z-index: 1;
+}
+
+.sky {
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to bottom, 
+        #0f2027 0%, 
+        #203a43 50%, 
+        #2c5364 100%);
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to bottom, 
+        #2d4a2b 0%, 
+        #1a2e1a 100%);
+}
+
+/* ===========================
+   ROAD LAYER - SMOOTH CURVED SVG
+   =========================== */
+#road-layer {
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.animated-dash-left {
+    animation: dashMoveLeft 2s linear infinite;
+}
+
+.animated-dash-right {
+    animation: dashMoveRight 2s linear infinite;
+}
+
+@keyframes dashMoveLeft {
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -70; }
+}
+
+@keyframes dashMoveRight {
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: 70; }
+}
+
+/* ===========================
+   CARS LAYER
+   =========================== */
+#cars-layer {
+    z-index: 4;
+    pointer-events: none;
+}
+
+.car {
+    position: absolute;
+    width: 80px;
+    height: auto;
+    transition: none;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    transform-origin: center center;
+}
+
+/* ===========================
+   WEATHER CANVAS
+   =========================== */
+#weather-canvas {
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* ===========================
+   CONTROL PANEL
+   =========================== */
+#controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    z-index: 10;
+    min-width: 200px;
+}
+
+#controls h3 {
+    margin: 0 0 15px 0;
+    font-size: 18px;
+    color: #ffcc00;
+}
+
+#controls label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+#controls input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+#controls input[type="range"] {
+    width: 100%;
+    margin-top: 5px;
+}
+
+#car-count-display {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+/* Info Panel */
+#info-panel {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px 20px;
+    border-radius: 10px;
+    color: white;
+    z-index: 10;
+    font-size: 14px;
+}
+
+#info-panel p {
+    margin: 5px 0;
+}
+
+/* ===========================
+   RESPONSIVE DESIGN
+   =========================== */
+@media (max-width: 768px) {
+    .car {
+        width: 60px;
+    }
+    
+    #controls {
+        top: 10px;
+        right: 10px;
+        padding: 15px;
+        font-size: 12px;
+    }
+    
+    #info-panel {
+        bottom: 10px;
+        left: 10px;
+        padding: 10px;
+        font-size: 12px;
+    }
+    
+    /* Adjust road widths for mobile */
+    #main-road-path {
+        stroke-width: 80;
+    }
+    
+    #upper-road-path,
+    #lower-road-path {
+        stroke-width: 70;
+    }
+}
+
+@media (max-width: 480px) {
+    .car {
+        width: 45px;
+    }
+    
+    #main-road-path {
+        stroke-width: 60;
+    }
+    
+    #upper-road-path,
+    #lower-road-path {
+        stroke-width: 50;
+    }
+}
