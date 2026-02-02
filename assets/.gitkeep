@@ -1,0 +1,8 @@
+# Assets Folder
+
+Place custom images here:
+- background.jpg (for custom road/expressway background)
+- car1.png, car2.png, etc. (for custom car sprites)
+- Any other visual assets you want to use
+
+The project works perfectly without custom images using CSS-generated graphics.
