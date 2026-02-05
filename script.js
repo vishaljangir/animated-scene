@@ -6,7 +6,7 @@ const config = {
     carsEnabled: true,
     fogEnabled: false,
     rainDrops: 150,
-    carCount: 6,
+    carCount: 1,
     carColors: ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c']
 };
 
@@ -71,14 +71,14 @@ function createCar(index) {
     const car = document.createElement('img');
     car.className = 'car';
     
-    const direction = index % 2 === 0 ? 'right' : 'left';
+    const direction = 'left';
     const lane = 1;
     
     // Use different images for different directions
     if (direction === 'right') {
-        car.src = 'assets/right-car.png';
+        car.src = 'assets/car.gif';
     } else {
-        car.src = 'assets/left-car.png';
+        car.src = 'assets/car.gif';
     }
     
     // Position car
@@ -88,11 +88,11 @@ function createCar(index) {
     
     car.style.bottom = bottom + 'px';
     car.style.left = (direction === 'right' ? -150 : window.innerWidth) + 'px';
-    if (direction === 'right') {
-        car.style.bottom = (bottom + 200) + 'px';
-    } else {
-        car.style.bottom = (bottom - 50) + 'px';
-    }
+    // if (direction === 'right') {
+    //     car.style.bottom = (bottom + 200) + 'px';
+    // } else {
+    //     car.style.bottom = (bottom - 50) + 'px';
+    // }
     
     document.getElementById('vehicles-layer').appendChild(car);
     
